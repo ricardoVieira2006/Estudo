@@ -1,1 +1,501 @@
-# Estudo
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guia Interativo de Revisão – Marketing e Publicidade</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f5f7fa;color:#1f2937;line-height:1.6;padding:24px}
+    .container{max-width:1100px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);overflow:hidden}
+    .head{padding:28px 28px 18px;border-bottom:4px solid #e5eef3;background:linear-gradient(135deg,#eaf4f7 0,#dbeaf0 100%)}
+    .head small{display:block;color:#0f3f4b;font-weight:600;letter-spacing:.2px;margin-bottom:6px}
+    .head h1{font-size:1.8rem;color:#114a59;margin-bottom:6px}
+    .head p{color:#315c67}
+
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:14px 20px;background:#f8fafc;border-bottom:1px solid #e5eef3}
+    .btn{border:1px solid #cfe1e7;background:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+    .btn:hover{background:#ecf5f8}
+
+    main{padding:26px}
+    .aula{margin-bottom:26px}
+    .aula-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .bubble{width:36px;height:36px;border-radius:50%;background:#b8d4d8;color:#124755;display:flex;align-items:center;justify-content:center;font-weight:800}
+    .aula-title{font-size:1.1rem;font-weight:700;color:#123e49}
+
+    .panel{border:1px solid #e5eef3;border-radius:12px;margin-top:8px;overflow:hidden}
+    .panel[aria-expanded="false"] .panel-body{display:none}
+    .panel-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#f1f7f9;cursor:pointer}
+    .panel-title{font-weight:700;color:#133f4a}
+    .chev{font-family:system-ui, -apple-system, Segoe UI;transform:rotate(0);transition:transform .2s ease}
+    .panel[aria-expanded="true"] .chev{transform:rotate(90deg)}
+    .panel-body{padding:16px 18px;background:#fff}
+    h4{margin:18px 0 8px;color:#0f3f4b}
+    ul{margin:0 0 10px 22px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{border:1px solid #e5eef3;padding:10px;vertical-align:top}
+    thead th{background:#f1f7f9;text-align:left}
+
+    @media print{
+      @page{size:A4;margin:12mm}
+      body{background:#fff;padding:0}
+      .toolbar{display:none}
+      .container{box-shadow:none;border-radius:0}
+      .panel{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="head">
+      <small>ISLA GAIA – Instituto Politécnico de Gestão e Tecnologia · Professora Sónia Oliveira</small>
+      <h1>Guia Interativo de Revisão – Marketing e Publicidade</h1>
+      <p>Conteúdos das Aulas 1 a 5 com definições essenciais e navegação interativa.</p>
+    </header>
+
+    <nav class="toolbar">
+      <button class="btn" id="expandAll" type="button">Expandir tudo</button>
+      <button class="btn" id="collapseAll" type="button">Fechar tudo</button>
+      <button class="btn" id="printBtn" type="button">Guardar PDF</button>
+    </nav>
+
+    <main>
+      <!-- AULA 1 -->
+      <section class="aula" id="aula1">
+        <div class="aula-head">
+          <div class="bubble">I</div>
+          <div class="aula-title">Introdução ao Marketing e Publicidade</div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">I.1 — Definição, Função e Elementos do Marketing</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p><strong>Marketing</strong> é o processo de identificar e atender necessidades do cliente de forma lucrativa, articulando pesquisa, desenvolvimento de produto, preço, comunicação e distribuição para criar valor para clientes e empresa.</p>
+            <ul>
+              <li><strong>Pesquisa de Mercado</strong>: identifica oportunidades e concorrência.</li>
+              <li><strong>Desenvolvimento de Produto</strong>: cria bens/serviços adequados.</li>
+              <li><strong>Precificação</strong>: define preços para maximizar valor e lucro.</li>
+              <li><strong>Promoção</strong>: comunica a proposta de valor.</li>
+            </ul>
+            <p><em>Exemplo</em>: no lançamento de um iPhone, a Apple pesquisa as necessidades, desenvolve features, define preço, planeia distribuição e comunica em múltiplos canais.</p>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">I.2 — Definição, Objetivos e Canais da Publicidade</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p><strong>Publicidade</strong> é comunicação paga e persuasiva para promover produtos, serviços, ideias ou marcas.</p>
+            <ul>
+              <li><strong>Objetivos</strong>: awareness, interesse, influência na decisão, reforço de imagem.</li>
+              <li><strong>Canais</strong>: TV/rádio, imprensa, outdoor, <em>online</em> (display, search, social), mobile, eventos patrocinados.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">I.3 — Diferenças Estratégicas: Marketing vs. Publicidade</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <table>
+              <thead><tr><th>Critério</th><th>Marketing (processo)</th><th>Publicidade (ferramenta)</th></tr></thead>
+              <tbody>
+                <tr><td>Natureza</td><td>Estratégia de ponta a ponta</td><td>Comunicação persuasiva</td></tr>
+                <tr><td>Âmbito</td><td>Produto, preço, praça, promoção</td><td>Mensagens e canais</td></tr>
+                <tr><td>Papel</td><td>Atrair, reter e rentabilizar</td><td>Gerar visibilidade e desejo</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">I.4 — Evolução Histórica do Marketing</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><strong>Massa</strong> (era industrial): mensagem única; foco em volume. <em>Ex.: Ford Modelo T.</em></li>
+              <li><strong>Segmentado</strong> (anos 60–80): divisão em segmentos demográficos/geo/psico/comportamentais; maior eficácia. <em>Ex.: Dove focada em mulheres.</em></li>
+              <li><strong>Relacional</strong> (anos 90): fidelização e personalização; CRM e LTV. <em>Ex.: programas de fidelidade.</em></li>
+              <li><strong>Digital</strong> (atual): segmentação por dados, interatividade e medição em tempo real; remarketing.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">I.5 — Marketing Tradicional vs. Marketing Digital</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <table>
+              <thead><tr><th>Característica</th><th>Tradicional</th><th>Digital</th></tr></thead>
+              <tbody>
+                <tr><td>Canais</td><td>TV, rádio, imprensa, outdoor</td><td>Web, social, email, search</td></tr>
+                <tr><td>Segmentação</td><td>Baixa</td><td>Avançada</td></tr>
+                <tr><td>Custo</td><td>Elevado</td><td>Mais baixo e escalável</td></tr>
+                <tr><td>Interatividade</td><td>Unidirecional</td><td>Bidirecional</td></tr>
+                <tr><td>Mensuração</td><td>Limitada</td><td>Em tempo real</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- AULA 2 -->
+      <section class="aula" id="aula2">
+        <div class="aula-head">
+          <div class="bubble">II</div>
+          <div class="aula-title">Comportamento do Consumidor, Segmentação, Targeting e Posicionamento</div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">II.1 — Comportamento do Consumidor: definição e fatores</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p>Estuda como indivíduos, grupos e organizações selecionam, compram, usam e descartam bens/serviços.</p>
+            <ul>
+              <li><strong>Culturais</strong>: cultura, subcultura, classe social</li>
+              <li><strong>Sociais</strong>: grupos de referência, família, papéis</li>
+              <li><strong>Pessoais</strong>: idade, ocupação, rendimento, estilo de vida</li>
+              <li><strong>Psicológicos</strong>: motivação, perceção, aprendizagem, atitudes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">II.2 — Segmentação: tipos e exemplo</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <table>
+              <thead><tr><th>Tipo</th><th>Descrição</th></tr></thead>
+              <tbody>
+                <tr><td>Demográfica</td><td>Idade, género, rendimento, educação, profissão</td></tr>
+                <tr><td>Geográfica</td><td>País, região, cidade, clima</td></tr>
+                <tr><td>Psicográfica</td><td>Estilo de vida, valores, personalidade</td></tr>
+                <tr><td>Comportamental</td><td>Ocasião, benefícios, uso, lealdade</td></tr>
+              </tbody>
+            </table>
+            <p><em>Exemplo Coca‑Cola</em>: Classic (tradição), Zero (performance sem açúcar), Light (estilo de vida saudável).</p>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">II.3 — Targeting: tipos e critérios</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><strong>Tipos</strong>: concentrado, diferenciado, indiferenciado.</li>
+              <li><strong>Critérios</strong>: dimensão, crescimento, acessibilidade, compatibilidade.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">II.4 — Posicionamento e estratégias (Starbucks)</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p>Posicionamento = lugar na mente do consumidor.</p>
+            <ul>
+              <li>Por preço, qualidade, experiência, uso/utilizador, concorrência, categoria.</li>
+              <li><em>Starbucks</em>: "terceiro lugar"; ambiente, personalização, qualidade, responsabilidade social.</li>
+              <li><strong>Regras</strong>: relevante, diferenciado, credível, sustentável.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">II.5 — Jornada do Consumidor (4 etapas)</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <table>
+              <thead><tr><th>Etapa</th><th>Objetivo do consumidor</th><th>Foco de marketing</th></tr></thead>
+              <tbody>
+                <tr><td>Awareness</td><td>Conhecer a marca</td><td>Visibilidade (publicidade, SEO, RP)</td></tr>
+                <tr><td>Consideration</td><td>Comparar opções</td><td>Conteúdo educativo, demonstrações</td></tr>
+                <tr><td>Decision</td><td>Comprar</td><td>Conveniente; preço, garantias, reviews</td></tr>
+                <tr><td>Loyalty</td><td>Fidelizar</td><td>Suporte, programas, experiência</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- AULA 3 -->
+      <section class="aula" id="aula3">
+        <div class="aula-head">
+          <div class="bubble">III</div>
+          <div class="aula-title">Pesquisa de Mercado e Análise Competitiva</div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">III.1 — Papel estratégico da Pesquisa de Mercado</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li>Reduz riscos; identifica oportunidades; otimiza estratégias; aprofunda conhecimento do cliente.</li>
+              <li>Aplicações: lançamento de produtos, satisfação, tendências.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">III.2 — Primária vs. Secundária (métodos, prós/cons)</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p><strong>Primária</strong>: entrevistas, questionários, focus groups, testes; específica e exclusiva, mas mais cara/lenta.</p>
+            <p><strong>Secundária</strong>: INE, Pordata, relatórios, artigos; rápida e barata, mas menos específica e pode estar desatualizada.</p>
+            <table>
+              <thead><tr><th>Critério</th><th>Primária</th><th>Secundária</th></tr></thead>
+              <tbody>
+                <tr><td>Custo</td><td>Elevado</td><td>Baixo</td></tr>
+                <tr><td>Tempo</td><td>Longo</td><td>Curto</td></tr>
+                <tr><td>Atualidade</td><td>Alta</td><td>Variável</td></tr>
+                <tr><td>Exclusividade</td><td>Proprietária</td><td>Pública</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">III.3 — SWOT: estrutura e importância (ex.: Netflix)</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><strong>Forças</strong>: vantagens internas | <strong>Fraquezas</strong>: limitações internas</li>
+              <li><strong>Oportunidades</strong>: fatores externos favoráveis | <strong>Ameaças</strong>: riscos externos</li>
+              <li>Ex.: Netflix — forças (marca, recomendação), fraquezas (custos), oportunidades (novos mercados), ameaças (concorrência, pirataria).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">III.4 — Benchmarking: tipos e propósito</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p>Comparar práticas/processos com referências para aprender e melhorar.</p>
+            <ul>
+              <li><strong>Etapas</strong>: identificar referências, recolher dados, comparar, aplicar melhorias.</li>
+              <li><strong>Tipos</strong>: competitivo, funcional, interno, genérico.</li>
+              <li><strong>Integração</strong>: PM fornece dados; SWOT interpreta; benchmarking orienta melhorias.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AULA 4 -->
+      <section class="aula" id="aula4">
+        <div class="aula-head">
+          <div class="bubble">IV</div>
+          <div class="aula-title">Marketing Mix (4Ps), Branding e Arquétipos</div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">IV.1 — Conceito de Marketing Mix (4Ps)</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><strong>Produto</strong>: características, qualidade, design, serviços.</li>
+              <li><strong>Preço</strong>: lista, descontos, condições (penetração, premium).</li>
+              <li><strong>Praça</strong>: canais, cobertura, logística.</li>
+              <li><strong>Promoção</strong>: publicidade, promoções, RP, venda pessoal, digital.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">IV.2 — 4Ps no contexto digital</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><strong>Produto</strong>: digitais, personalização, UX, atualizações contínuas.</li>
+              <li><strong>Preço</strong>: dinâmico, freemium, cupons.</li>
+              <li><strong>Praça</strong>: e‑commerce, marketplaces, omnichannel.</li>
+              <li><strong>Promoção</strong>: SEO/SEM, social, email, conteúdo, influenciadores, performance.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">IV.3 — Branding: definição e identidade</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p><strong>Branding</strong> = criar/gerir identidade distintiva (nome, logótipo, cores, tipografia, tom, elementos visuais, valores, personalidade, posicionamento). <strong>Brand equity</strong>: valor intangível acumulado.</p>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">IV.4 — Arquétipos de Marca (base junguiana)</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <table>
+              <thead><tr><th>Arquétipo</th><th>Essência</th><th>Exemplos</th></tr></thead>
+              <tbody>
+                <tr><td>Herói</td><td>Superação</td><td>Nike</td></tr>
+                <tr><td>Inocente</td><td>Otimismo</td><td>Coca‑Cola</td></tr>
+                <tr><td>Explorador</td><td>Aventura</td><td>Red Bull</td></tr>
+                <tr><td>Sábio</td><td>Conhecimento</td><td>Google</td></tr>
+                <tr><td>Criador</td><td>Imaginação</td><td>Lego</td></tr>
+                <tr><td>Cuidador</td><td>Cuidado</td><td>Johnson's</td></tr>
+                <tr><td>Governante</td><td>Liderança</td><td>Mercedes‑Benz</td></tr>
+                <tr><td>Mágico</td><td>Transformação</td><td>Disney/Apple</td></tr>
+              </tbody>
+            </table>
+            <p>Consistência do arquétipo em produto, comunicação e experiência.</p>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">IV.5 — Posicionamento & Diferenciação</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><strong>Diferencial</strong>: único, relevante e difícil de copiar.</li>
+              <li><em>Tesla</em> (inovação); <em>Volvo</em> (segurança).</li>
+              <li>Branding expressa o posicionamento; arquétipo humaniza a marca.</li>
+              <li><strong>Regra</strong>: consistência — cada decisão deve reforçar o posicionamento.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AULA 5 -->
+      <section class="aula" id="aula5">
+        <div class="aula-head">
+          <div class="bubble">V</div>
+          <div class="aula-title">Plano de Marketing</div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">Estrutura: pilares, objetivos e implementação</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><strong>Pilares</strong>: Análise de Mercado → Objetivos & Estratégias → Orçamento & Cronograma → Métricas & KPIs.</li>
+              <li><strong>Objetivos SMART</strong> e <strong>Marketing Mix</strong> orquestrado (Produto/Preço/Praça/Promoção).</li>
+              <li><strong>Orçamento</strong>: custos fixos/variáveis e contingência (~10–15%). <strong>Cronograma</strong>: Gantt, milestones, calendário editorial.</li>
+              <li><strong>KPIs</strong>: conversão, alcance, ROI, CAC, engagement, CTR.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">Exercício prático (para estudo)</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <p>Elaborar um <strong>Mini Plano de Marketing</strong> para um produto/serviço fictício incluindo: análise de mercado, objetivos SMART, estratégias (4Ps), cronograma e orçamento estimado.</p>
+          </div>
+        </div>
+
+      <!-- SECÇÃO: DEFINIÇÕES AULAS 1-5 (CONTEÚDO EXISTENTE) -->
+      <section class="aula" id="definicoes">
+        <div class="aula-head">
+          <div class="bubble">VI</div>
+          <div class="aula-title">Definições Chave (Resumo Geral – Aulas 1 a 5)</div>
+        </div>
+        <div class="panel" aria-expanded="false">
+          <div class="panel-head" role="button" tabindex="0">
+            <div class="panel-title">Lista de Definições Essenciais – Aulas 1 a 5</div>
+            <div class="chev">▶</div>
+          </div>
+          <div class="panel-body">
+            <h4>I. FUNDAMENTOS DE MARKETING E PUBLICIDADE (AULA 1)</h4>
+            <ul>
+              <li><strong>Marketing</strong> — processo de identificar e satisfazer necessidades de forma lucrativa.</li>
+              <li><strong>Publicidade</strong> — comunicação paga para persuadir e promover produtos ou marcas.</li>
+              <li><strong>Marketing Digital</strong> — uso de plataformas online e dados para alcançar e envolver consumidores.</li>
+            </ul>
+
+            <h4>II. COMPORTAMENTO, SEGMENTAÇÃO E POSICIONAMENTO (AULA 2)</h4>
+            <ul>
+              <li><strong>Comportamento do Consumidor</strong> — estudo de como indivíduos e grupos compram e usam bens e serviços.</li>
+              <li><strong>Segmentação</strong> — divisão do mercado em grupos com necessidades semelhantes.</li>
+              <li><strong>Targeting</strong> — seleção dos segmentos mais atrativos para a empresa.</li>
+              <li><strong>Posicionamento</strong> — construção da perceção diferenciada da marca na mente do público.</li>
+            </ul>
+
+            <h4>III. PESQUISA E ANÁLISE COMPETITIVA (AULA 3)</h4>
+            <ul>
+              <li><strong>Pesquisa de Mercado</strong> — recolha e análise de dados para apoiar decisões estratégicas.</li>
+              <li><strong>SWOT</strong> — forças, fraquezas, oportunidades e ameaças.</li>
+              <li><strong>Benchmarking</strong> — comparação com melhores práticas do setor para identificar melhorias.</li>
+            </ul>
+
+            <h4>IV. MARKETING MIX, BRANDING E POSICIONAMENTO (AULA 4)</h4>
+            <ul>
+              <li><strong>Marketing Mix (4Ps)</strong> — produto, preço, praça e promoção.</li>
+              <li><strong>Branding</strong> — construção e gestão de identidade e reputação da marca.</li>
+              <li><strong>Arquétipos de Marca</strong> — padrões universais que definem a personalidade da marca.</li>
+              <li><strong>Diferenciação Competitiva</strong> — vantagem única e relevante que distingue a marca.</li>
+            </ul>
+
+            <h4>V. PLANO DE MARKETING (AULA 5)</h4>
+            <table>
+              <thead><tr><th>Conceito</th><th>Definição Detalhada</th></tr></thead>
+              <tbody>
+                <tr><td>Plano de Marketing</td><td>Documento estratégico que orienta ações de marketing e comunicação num período definido, desde a análise até à execução.</td></tr>
+                <tr><td>Pilares do Plano</td><td>1) Análise de Mercado; 2) Objetivos e Estratégias; 3) Orçamento e Cronograma; 4) Métricas e KPIs.</td></tr>
+                <tr><td>Análise de Mercado</td><td>Estudo das tendências, concorrência e comportamento do consumidor para identificar oportunidades e ameaças.</td></tr>
+                <tr><td>Objetivos SMART</td><td>Específicos, Mensuráveis, Atingíveis, Relevantes e Temporais — orientam e avaliam resultados.</td></tr>
+                <tr><td>Estratégias de Marketing Mix</td><td>Aplicação dos 4Ps para alcançar os objetivos do plano.</td></tr>
+                <tr><td>Orçamento e Cronograma</td><td>Distribuição de recursos e calendarização de atividades para garantir execução eficiente.</td></tr>
+                <tr><td>KPIs</td><td>Indicadores-chave de desempenho (ROI, CAC, alcance, engagement) usados para medir o sucesso.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var $$ = function(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); };
+
+      // Toggle panels (delegation)
+      document.addEventListener('click', function(e){
+        var head = e.target.closest('.panel .panel-head');
+        if(head){ head.parentElement.setAttribute('aria-expanded', head.parentElement.getAttribute('aria-expanded')==='true'?'false':'true'); }
+      });
+      document.addEventListener('keydown', function(e){
+        if((e.key==='Enter'||e.key===' ') && e.target.matches('.panel .panel-head')){ e.preventDefault(); e.target.parentElement.setAttribute('aria-expanded', e.target.parentElement.getAttribute('aria-expanded')==='true'?'false':'true'); }
+      });
+
+      // Controls
+      var expandBtn = document.getElementById('expandAll');
+      var collapseBtn = document.getElementById('collapseAll');
+      var printBtn = document.getElementById('printBtn');
+
+      if(expandBtn){ expandBtn.addEventListener('click', function(){ $$('.panel').forEach(function(p){ p.setAttribute('aria-expanded','true');}); }); }
+      if(collapseBtn){ collapseBtn.addEventListener('click', function(){ $$('.panel').forEach(function(p){ p.setAttribute('aria-expanded','false');}); }); }
+      if(printBtn){ printBtn.addEventListener('click', function(){
+        var panels = $$('.panel');
+        var prev = panels.map(function(p){ return p.getAttribute('aria-expanded'); });
+        panels.forEach(function(p){ p.setAttribute('aria-expanded','true'); });
+        var restore = function(){ panels.forEach(function(p,i){ p.setAttribute('aria-expanded', prev[i]||'false'); }); window.removeEventListener('afterprint', restore); };
+        window.addEventListener('afterprint', restore);
+        window.print();
+      }); }
+    });
+  </script>
+</body>
+</html>
