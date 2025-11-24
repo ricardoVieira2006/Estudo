@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portal de Estudo - GPSI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #4f46e5, #111827 55%, #020617);
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --accent: #6366f1;
+      --accent-soft: rgba(129, 140, 248, 0.25);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --danger: #f97373;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .shell {
+      max-width: 960px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 24px 24px 22px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      backdrop-filter: blur(18px);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .hero-badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+    }
+    h1 {
+      font-size: clamp(2rem, 3.1vw, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    h1 span.highlight {
+      background: linear-gradient(120deg, #a5b4fc, #f472b6, #facc15);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      max-width: 480px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+      margin-bottom: 4px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(75, 85, 99, 0.7);
+    }
+    .hero-meta span::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(129, 140, 248, 0.9);
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+    }
+    a.btn.primary {
+      background: radial-gradient(circle at 10% 0, #fbbf24, #6366f1 55%, #4c1d95);
+      color: #0b1020;
+      box-shadow: 0 16px 45px rgba(79, 70, 229, 0.8);
+    }
+    a.btn.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 60px rgba(79, 70, 229, 0.95);
+    }
+    a.btn.secondary {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+    a.btn.secondary:hover {
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+    }
+    a.btn span.icon {
+      font-size: 1.1rem;
+    }
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .side-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .side-header h2 {
+      font-size: 1rem;
+      color: #e5e7eb;
+    }
+    .side-header span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+    .taglist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    .tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.8);
+    }
+    .tip {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-top: 6px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      gap: 6px;
+    }
+    .pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(248, 250, 252, 0.85);
+    }
+    .steps {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .steps ol {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+    .steps li {
+      margin-bottom: 4px;
+    }
+    .warning {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: #fecaca;
+      background: rgba(127, 29, 29, 0.25);
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid rgba(248, 113, 113, 0.5);
+    }
+    footer {
+      margin-top: 14px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* Modal password admin */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 40;
+      backdrop-filter: blur(10px);
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal {
+      background: radial-gradient(circle at top, rgba(76, 81, 191, 0.55), rgba(15, 23, 42, 0.98));
+      border-radius: 18px;
+      padding: 18px 20px 16px;
+      width: min(360px, 100%);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(191, 219, 254, 0.5);
+      color: var(--text-main);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .modal-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .modal-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .modal-close {
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 2px;
+      border-radius: 999px;
+      transition: background 0.12s ease, color 0.12s ease;
+    }
+    .modal-close:hover {
+      background: rgba(15, 23, 42, 0.85);
+      color: #e5e7eb;
+    }
+    .modal-label {
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+    .modal-input {
+      width: 100%;
+      padding: 8px 9px;
+      border-radius: 9px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .modal-input:focus {
+      border-color: rgba(129, 140, 248, 0.95);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.8);
+    }
+    .modal-error {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: #fecaca;
+      min-height: 16px;
+    }
+    .modal-actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+    .modal-actions button {
+      flex: 1;
+      border-radius: 999px;
+      padding: 8px 0;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+    .btn-cancel {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+    .btn-cancel:hover {
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.8);
+    }
+    .btn-confirm {
+      background: radial-gradient(circle at 10% 0, #fbbf24, #6366f1 55%, #4c1d95);
+      color: #020617;
+      box-shadow: 0 14px 40px rgba(79, 70, 229, 0.9);
+    }
+    .btn-confirm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 55px rgba(79, 70, 229, 1);
+    }
+    .modal-footnote {
+      margin-top: 8px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+    .shake {
+      animation: shake 0.24s ease-in-out;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      50% { transform: translateX(4px); }
+      75% { transform: translateX(-2px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="card">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Portal de Estudo &middot; Estudo
+      </div>
+      <h1>
+        Materiais em <span class="highlight">HTML</span> para a disciplina
+      </h1>
+      <p class="hero-sub">
+        Página principal do projeto de estudo. Aqui os alunos conseguem aceder às fichas, aulas e outros materiais em HTML,
+        e a professora tem um acesso rápido para enviar novos ficheiros para o repositório do GitHub.
+      </p>
+
+      <div class="hero-meta">
+        <span>Projeto do aluno Ricardo &middot; GPSI</span>
+        <span>Integração com GitHub apenas com front-end</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="materiais.html">
+          <span class="icon">📚</span>
+          <span>Ver materiais</span>
+        </a>
+        <a class="btn secondary" href="#" id="admin-btn">
+          <span class="icon">🧑‍🏫</span>
+          <span>Área da Professora</span>
+        </a>
+      </div>
+    </section>
+
+    <aside class="card side">
+      <div>
+        <div class="side-header">
+          <h2>Como funciona este portal?</h2>
+          <span>Resumo rápido</span>
+        </div>
+        <div class="taglist">
+          <span class="tag">GitHub Pages</span>
+          <span class="tag">HTML + CSS + JS</span>
+          <span class="tag">Índice automático</span>
+          <span class="tag">Pseudo password</span>
+        </div>
+        <p class="tip">
+          Os materiais da disciplina são guardados numa pasta do repositório
+          <strong>Estudo</strong> no GitHub. A página de índice lê automaticamente essa pasta
+          usando a API pública do GitHub e gera uma lista de ficheiros para os alunos abrirem.
+        </p>
+      </div>
+
+      <div class="steps">
+        <div class="pill">
+          <span class="dot"></span>
+          <span>Passos para a professora</span>
+        </div>
+        <ol>
+          <li>Clicar em <strong>Área da Professora</strong> e introduzir a palavra-passe.</li>
+          <li>Depois de aceitar, o site abre a página de upload do GitHub.</li>
+          <li>Arrastar o ficheiro <code>.html</code> para a pasta de materiais e confirmar o commit.</li>
+        </ol>
+        <p class="tip">
+          Os ficheiros devem ser enviados para a pasta <code>materiais/</code> do repositório
+          para aparecerem no índice automaticamente.
+        </p>
+      </div>
+
+      <div class="warning">
+        ⚠️ Nota: esta palavra-passe serve apenas como bloqueio simples na interface
+        (HTML/JS). Não substitui as permissões de conta do GitHub.
+      </div>
+
+      <footer>
+        Projeto de estudo &middot; ricardoVieira2006/Estudo
+      </footer>
+    </aside>
+  </div>
+
+  <!-- Modal password área da professora -->
+  <div class="modal-backdrop" id="pw-modal" aria-hidden="true">
+    <div class="modal" id="pw-modal-card">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Área da Professora</div>
+          <div class="modal-sub">Insere a palavra-passe definida para esta área antes de continuar.</div>
+        </div>
+        <button class="modal-close" id="pw-close" aria-label="Fechar">&times;</button>
+      </div>
+      <div>
+        <div class="modal-label">Palavra-passe</div>
+        <input
+          type="password"
+          class="modal-input"
+          id="pw-input"
+          placeholder="●●●●●●●●"
+        />
+        <div class="modal-error" id="pw-error"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" type="button" id="pw-cancel">Cancelar</button>
+        <button class="btn-confirm" type="button" id="pw-submit">Entrar</button>
+      </div>
+      <div class="modal-footnote">
+        Dica: mantém esta palavra-passe apenas entre a professora e o autor do projeto.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Palavra-passe da área da professora
+    const ADMIN_PASSWORD = "Sonia0liveir4";
+    // Link de upload no GitHub (pasta materiais/)
+    const ADMIN_UPLOAD_URL = "https://github.com/ricardoVieira2006/Estudo/upload/main/materiais";
+
+    const adminBtn = document.getElementById("admin-btn");
+    const modal = document.getElementById("pw-modal");
+    const modalCard = document.getElementById("pw-modal-card");
+    const pwInput = document.getElementById("pw-input");
+    const pwError = document.getElementById("pw-error");
+    const pwClose = document.getElementById("pw-close");
+    const pwCancel = document.getElementById("pw-cancel");
+    const pwSubmit = document.getElementById("pw-submit");
+
+    function openModal() {
+      modal.classList.add("open");
+      pwError.textContent = "";
+      pwInput.value = "";
+      pwInput.focus();
+    }
+    function closeModal() {
+      modal.classList.remove("open");
+      pwError.textContent = "";
+      modalCard.classList.remove("shake");
+    }
+
+    adminBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      openModal();
+    });
+
+    pwClose.addEventListener("click", function () {
+      closeModal();
+    });
+    pwCancel.addEventListener("click", function () {
+      closeModal();
+    });
+
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    function handleSubmit() {
+      const value = pwInput.value.trim();
+      if (value === ADMIN_PASSWORD) {
+        pwError.textContent = "";
+        modalCard.classList.remove("shake");
+        closeModal();
+        // Abre a página de upload do GitHub numa nova aba
+        window.open(ADMIN_UPLOAD_URL, "_blank");
+      } else {
+        pwError.textContent = "Palavra-passe incorreta. Tenta novamente.";
+        modalCard.classList.remove("shake");
+        // trigger reflow for animation restart
+        void modalCard.offsetWidth;
+        modalCard.classList.add("shake");
+      }
+    }
+
+    pwSubmit.addEventListener("click", handleSubmit);
+    pwInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleSubmit();
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
