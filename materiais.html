@@ -242,14 +242,17 @@
       font-size: 0.9rem;
       color: var(--text-main);
     }
+
+    /* Área dos botões (desktop + mobile) */
     .preview-links {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      justify-content: flex-end;
     }
     .link-btn {
       font-size: 0.78rem;
-      padding: 5px 10px;
+      padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.6);
       background: rgba(15, 23, 42, 0.98);
@@ -265,6 +268,7 @@
       transform: translateY(-1px);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.95);
     }
+
     .preview-tip {
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -278,9 +282,23 @@
       width: 100%;
       height: 260px;
     }
+
+    /* Layout especial para telemóvel */
     @media (max-width: 600px) {
+      .preview-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .preview-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .link-btn {
+        width: 100%;
+        justify-content: center;
+      }
       iframe {
-        height: 220px;
+        height: 300px;
       }
     }
   </style>
@@ -290,7 +308,7 @@
     <header>
       <div class="title-block">
         <div class="breadcrumb">
-          <a href="index.html">Início</a> &rsaquo; Índice de materiais
+          <a href="https://ricardovieira2006.github.io/Estudo/">Início</a> › Índice de materiais
         </div>
         <h1>Índice de materiais da disciplina</h1>
         <p class="subtitle">
@@ -342,7 +360,7 @@
     const OWNER = "ricardoVieira2006";
     const REPO = "Estudo";
     const PATH = "materiais"; // pasta dentro do repositório
-    const BRANCH = "main"; // usado para construir o URL do GitHub Pages
+    const BRANCH = "main";    // usado para construir o URL do GitHub Pages
 
     const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`;
     const pagesBaseUrl = `https://${OWNER}.github.io/${REPO}/${PATH}/`;
@@ -427,7 +445,10 @@
       if (!term) {
         filteredFiles = [...allFiles];
       } else {
-        filteredFiles = allFiles.filter((f) => f.displayName.toLowerCase().includes(term) || f.name.toLowerCase().includes(term));
+        filteredFiles = allFiles.filter((f) =>
+          f.displayName.toLowerCase().includes(term) ||
+          f.name.toLowerCase().includes(term)
+        );
       }
       renderList();
     }
