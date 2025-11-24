@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Índice de Materiais - Estudo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top, #4f46e5, #020617 55%, #020617);
+      --card-bg: rgba(15, 23, 42, 0.95);
+      --accent: #6366f1;
+      --accent-soft: rgba(129, 140, 248, 0.25);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      padding: 24px;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .shell {
+      max-width: 1040px;
+      width: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 18px;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .title-block {
+      max-width: 560px;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 2.4vw, 2rem);
+      margin-bottom: 6px;
+    }
+    .breadcrumb {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .toolbar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .search-box {
+      position: relative;
+      width: min(260px, 100%);
+    }
+    .search-box input {
+      width: 100%;
+      padding: 7px 10px 7px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .search-box input::placeholder {
+      color: #6b7280;
+    }
+    .search-box span.icon {
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+    .filters {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    main {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 18px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      backdrop-filter: blur(16px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+    }
+    @media (max-width: 860px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .list-panel {
+      border-right: 1px solid rgba(31, 41, 55, 0.8);
+      padding-right: 14px;
+      overflow: auto;
+      max-height: calc(100vh - 160px);
+    }
+    @media (max-width: 860px) {
+      .list-panel {
+        border-right: none;
+        border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+        padding-right: 0;
+        padding-bottom: 12px;
+        max-height: none;
+      }
+    }
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.75rem;
+      gap: 6px;
+    }
+    .badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.85);
+    }
+
+    .items {
+      list-style: none;
+    }
+    .item {
+      border-radius: 12px;
+      padding: 10px 11px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.12), rgba(15, 23, 42, 0.95));
+      cursor: pointer;
+      transition: background 0.12s ease, transform 0.08s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .item:hover {
+      transform: translateY(-1px);
+      border-color: rgba(129, 140, 248, 0.9);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+    }
+    .item-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .item-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .item-title {
+      font-size: 0.92rem;
+      font-weight: 500;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .item-meta {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+    .item-arrow {
+      font-size: 1.1rem;
+      color: #9ca3af;
+    }
+
+    .empty,
+    .error,
+    .loading {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 10px 2px;
+    }
+
+    .preview-panel {
+      padding-left: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    @media (max-width: 860px) {
+      .preview-panel {
+        padding-left: 0;
+      }
+    }
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .preview-title {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+    .preview-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .link-btn {
+      font-size: 0.78rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.98);
+      color: var(--text-main);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.1s ease, transform 0.08s ease, box-shadow 0.1s ease;
+    }
+    .link-btn:hover {
+      background: rgba(17, 24, 39, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.95);
+    }
+    .preview-tip {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    iframe {
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: #020617;
+      width: 100%;
+      height: 260px;
+    }
+    @media (max-width: 600px) {
+      iframe {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="title-block">
+        <div class="breadcrumb">
+          <a href="index.html">Início</a> &rsaquo; Índice de materiais
+        </div>
+        <h1>Índice de materiais da disciplina</h1>
+        <p class="subtitle">
+          Escolhe um ficheiro da lista abaixo para o abrir. Estes materiais são lidos diretamente da pasta
+          <code>materiais/</code> do repositório <code>ricardoVieira2006/Estudo</code>.
+        </p>
+      </div>
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="icon">🔍</span>
+          <input id="search" type="text" placeholder="Procurar por nome (ex: ficha, aula...)" />
+        </div>
+        <div class="filters">
+          Apenas ficheiros <code>.html</code> e <code>.htm</code> são listados automaticamente.
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="list-panel">
+        <div class="list-header">
+          <span>Materiais disponíveis</span>
+          <span class="badge">
+            <span class="dot"></span>
+            <span id="count-label">0 ficheiros</span>
+          </span>
+        </div>
+        <div id="state" class="loading">A carregar materiais a partir do GitHub...</div>
+        <ul id="items" class="items" style="display:none;"></ul>
+      </section>
+
+      <section class="preview-panel">
+        <div class="preview-header">
+          <div>
+            <div class="preview-title" id="preview-title">Nenhum ficheiro selecionado</div>
+            <div class="preview-tip" id="preview-subtitle">
+              Clica num ficheiro na lista para veres uma pré-visualização rápida aqui e abrires o material em separado.
+            </div>
+          </div>
+          <div class="preview-links" id="preview-links" style="display:none;"></div>
+        </div>
+        <iframe id="preview-frame" title="Pré-visualização do material selecionado" style="display:none;"></iframe>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Configuração do repositório e pasta onde estão os materiais
+    const OWNER = "ricardoVieira2006";
+    const REPO = "Estudo";
+    const PATH = "materiais"; // pasta dentro do repositório
+    const BRANCH = "main"; // usado para construir o URL do GitHub Pages
+
+    const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`;
+    const pagesBaseUrl = `https://${OWNER}.github.io/${REPO}/${PATH}/`;
+
+    const stateEl = document.getElementById("state");
+    const itemsEl = document.getElementById("items");
+    const countLabel = document.getElementById("count-label");
+    const searchInput = document.getElementById("search");
+    const previewTitle = document.getElementById("preview-title");
+    const previewSubtitle = document.getElementById("preview-subtitle");
+    const previewLinks = document.getElementById("preview-links");
+    const previewFrame = document.getElementById("preview-frame");
+
+    let allFiles = [];
+    let filteredFiles = [];
+
+    function updateCountLabel() {
+      const n = filteredFiles.length;
+      if (n === 0) {
+        countLabel.textContent = "0 ficheiros";
+      } else if (n === 1) {
+        countLabel.textContent = "1 ficheiro";
+      } else {
+        countLabel.textContent = n + " ficheiros";
+      }
+    }
+
+    function renderList() {
+      itemsEl.innerHTML = "";
+      if (!filteredFiles.length) {
+        itemsEl.style.display = "none";
+        stateEl.className = "empty";
+        stateEl.textContent = "Nenhum material encontrado com esse filtro.";
+        stateEl.style.display = "block";
+        updateCountLabel();
+        return;
+      }
+      stateEl.style.display = "none";
+      itemsEl.style.display = "block";
+
+      filteredFiles.forEach((file) => {
+        const li = document.createElement("li");
+        li.className = "item";
+        li.dataset.name = file.name;
+
+        const icon = document.createElement("div");
+        icon.className = "item-icon";
+        icon.textContent = "📄";
+
+        const body = document.createElement("div");
+        body.className = "item-body";
+
+        const title = document.createElement("div");
+        title.className = "item-title";
+        title.textContent = file.displayName;
+
+        const meta = document.createElement("div");
+        meta.className = "item-meta";
+        meta.textContent = file.name + " · " + file.typeLabel;
+
+        body.appendChild(title);
+        body.appendChild(meta);
+
+        const arrow = document.createElement("div");
+        arrow.className = "item-arrow";
+        arrow.textContent = "↗";
+
+        li.appendChild(icon);
+        li.appendChild(body);
+        li.appendChild(arrow);
+
+        li.addEventListener("click", () => selectFile(file));
+
+        itemsEl.appendChild(li);
+      });
+
+      updateCountLabel();
+    }
+
+    function applyFilter() {
+      const term = searchInput.value.trim().toLowerCase();
+      if (!term) {
+        filteredFiles = [...allFiles];
+      } else {
+        filteredFiles = allFiles.filter((f) => f.displayName.toLowerCase().includes(term) || f.name.toLowerCase().includes(term));
+      }
+      renderList();
+    }
+
+    function selectFile(file) {
+      const fullUrl = pagesBaseUrl + encodeURIComponent(file.name);
+      previewTitle.textContent = file.displayName;
+      previewSubtitle.textContent = file.name + " · aberto via GitHub Pages";
+      previewLinks.style.display = "flex";
+      previewLinks.innerHTML = "";
+
+      const openBtn = document.createElement("a");
+      openBtn.href = fullUrl;
+      openBtn.target = "_blank";
+      openBtn.className = "link-btn";
+      openBtn.innerHTML = "<span>🔗</span><span>Abrir em nova aba</span>";
+
+      const githubLink = document.createElement("a");
+      githubLink.href = file.html_url;
+      githubLink.target = "_blank";
+      githubLink.className = "link-btn";
+      githubLink.innerHTML = "<span>💻</span><span>Ver ficheiro no GitHub</span>";
+
+      previewLinks.appendChild(openBtn);
+      previewLinks.appendChild(githubLink);
+
+      previewFrame.style.display = "block";
+      previewFrame.src = fullUrl;
+    }
+
+    async function loadFiles() {
+      try {
+        stateEl.className = "loading";
+        stateEl.textContent = "A carregar materiais a partir do GitHub...";
+        const resp = await fetch(apiUrl);
+        if (!resp.ok) {
+          throw new Error("Erro HTTP " + resp.status);
+        }
+        const data = await resp.json();
+        const files = Array.isArray(data) ? data : [];
+
+        const htmlFiles = files.filter((f) => {
+          if (!f || !f.name || typeof f.name !== "string") return false;
+          const lower = f.name.toLowerCase();
+          return lower.endsWith(".html") || lower.endsWith(".htm");
+        });
+
+        allFiles = htmlFiles
+          .map((f) => {
+            const base = f.name.replace(/\.(html|htm)$/i, "");
+            const displayName = base
+              .replace(/[-_]/g, " ")
+              .replace(/\s+/g, " ")
+              .trim()
+              .replace(/\b\w/g, (c) => c.toUpperCase());
+            return {
+              name: f.name,
+              path: f.path,
+              html_url: f.html_url,
+              displayName: displayName || f.name,
+              typeLabel: "Ficheiro HTML",
+            };
+          })
+          .sort((a, b) => a.displayName.localeCompare(b.displayName, "pt"));
+
+        filteredFiles = [...allFiles];
+
+        if (!allFiles.length) {
+          stateEl.className = "empty";
+          stateEl.textContent =
+            "Ainda não há ficheiros HTML na pasta 'materiais/'. Peça à professora para enviar algum através do botão de upload no início.";
+          itemsEl.style.display = "none";
+          updateCountLabel();
+          return;
+        }
+
+        renderList();
+      } catch (err) {
+        console.error(err);
+        stateEl.className = "error";
+        stateEl.textContent =
+          "Ocorreu um erro ao carregar os materiais. Verifique o nome da pasta, o repositório e se é público.";
+      }
+    }
+
+    searchInput.addEventListener("input", () => {
+      applyFilter();
+    });
+
+    loadFiles();
+  </script>
+</body>
+</html>
